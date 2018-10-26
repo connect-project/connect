@@ -1,0 +1,3 @@
+AUTH_PASSWORD_VALIDATORS = []
+
+TIME_ZONE = 'Asia/Kolkata'
