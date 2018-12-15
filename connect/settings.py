@@ -13,9 +13,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '&p0)&=7(hpy9_f3zu=^m!$6(@-esi2)ixycm6g-rciavx97$@9'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 ALLOWED_HOSTS = []
 
 
@@ -28,7 +25,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'crispy_forms',
+    'phonenumber_field',
+    'social.apps.SocialConfig',
+    'widget_tweaks',
 ]
+
+AUTH_USER_MODEL = 'social.UserProfile'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -45,7 +51,7 @@ ROOT_URLCONF = 'connect.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['./templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -110,6 +116,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+LOGIN_REDIRECT_URL = '/'
 
 # For local developement configurations
 if os.environ.get('CONNECT_LOCAL_DEVELOPMENT') is not None:
