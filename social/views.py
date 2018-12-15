@@ -24,7 +24,7 @@ def signup(request: HttpRequest) -> HttpResponse:
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('index')
+            return redirect('home')
     else:
         form = SignUpForm()
 
@@ -34,5 +34,5 @@ def signup(request: HttpRequest) -> HttpResponse:
 def home(request: HttpRequest) -> HttpResponse:
     return render(
         request,
-        'index.html',
+        'home.html',
     )
