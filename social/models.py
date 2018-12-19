@@ -16,7 +16,11 @@ class UserProfile(AbstractUser):
     )
     phone_number = PhoneNumberField()
     website = models.URLField(max_length=250)
-    photo = models.ImageField(upload_to='upload/', null=True, blank=True)
+    photo = models.ImageField(
+        upload_to='upload/profile/',
+        null=True,
+        blank=True
+    )
 
     class Meta:
         ordering = ["date_joined"]
@@ -51,7 +55,12 @@ class Connection(models.Model):
         return f"{self.follower} : {self.following}"
 
 
-class UserPosts(models.Model):
+class UserPost(models.Model):
+    user_profile = models.ForeignKey(
+        UserProfile,
+        on_delete=models.CASCADE,
+        blank=True
+    )
     date_posted = models.DateField(default=date.today)
     date_updated = models.DateField(default=date.today)
     likes = models.IntegerField(default=0)
@@ -72,3 +81,28 @@ class UserPosts(models.Model):
 
     class Meta:
         ordering = ["date_updated"]
+
+    def get_number_of_likes(self):
+        return self.like_set.count()
+
+
+class Comment(models.Model):
+    user_post = models.ForeignKey(UserPost, on_delete=models.CASCADE)
+    commenter = models.ForeignKey(
+        UserProfile,
+        on_delete=models.CASCADE,
+        blank=True
+    )
+    text = models.CharField(max_length=100)
+    date_posted = models.DateField(default=date.today)
+
+    def __str__(self):
+        return f"Posted on {self.date_posted}. Comment: {self.text}"
+
+
+class Like(models.Model):
+    user_post = models.ForeignKey(UserPost, on_delete=models.CASCADE)
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ("user_post", "user_profile")
