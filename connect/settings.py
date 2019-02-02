@@ -119,5 +119,5 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/'
 
 # For local developement configurations
-if os.environ.get('CONNECT_LOCAL_DEVELOPMENT') is not None:
+if os.environ.get('DEV_ENV') is not None:
     from connect.settings_dev import *
