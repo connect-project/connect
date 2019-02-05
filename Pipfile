@@ -15,6 +15,7 @@ django-phonenumber-field = "*"
 django-widget-tweaks = "*"
 phonenumbers = "*"
 pillow = "*"
+social-auth-app-django = "*"
 
 [requires]
 python_version = "3.6"
