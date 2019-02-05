@@ -1,4 +1,3 @@
-import logging
 import os
 import sys
 
@@ -6,15 +5,13 @@ import sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+PRODUCTION = os.environ.get('DEV_ENV') != 'True'
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '&p0)&=7(hpy9_f3zu=^m!$6(@-esi2)ixycm6g-rciavx97$@9'
+# CHECKLIST: SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY',
+                            '&p0)&=7(hpy9_f3zu=^m!$6(@-esi2)ixycm6g-rciavx97$@9')
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -119,5 +116,5 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/'
 
 # For local developement configurations
-if os.environ.get('DEV_ENV') is not None:
+if not PRODUCTION:
     from connect.settings_dev import *
