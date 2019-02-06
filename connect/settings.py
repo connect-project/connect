@@ -11,7 +11,7 @@ PRODUCTION = os.environ.get('DEV_ENV') != 'True'
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY',
                             '&p0)&=7(hpy9_f3zu=^m!$6(@-esi2)ixycm6g-rciavx97$@9')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -48,7 +48,7 @@ ROOT_URLCONF = 'connect.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['./templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -112,6 +112,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 LOGIN_REDIRECT_URL = '/'
 
