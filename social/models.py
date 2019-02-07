@@ -29,7 +29,7 @@ class UserProfile(AbstractUser):
         return self.username
 
     def get_absolute_url(self):
-        return reverse('accounts:profile', kwargs={'username': self.username})
+        return reverse('polls:profile', kwargs={'username': self.username})
 
     def get_full_name(self):
         return f"{self.first_name} {self.last_name}"

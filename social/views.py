@@ -13,11 +13,15 @@ from django.views import generic
 from django.views.generic.edit import CreateView
 
 from social.forms import SignUpForm
+from social.models import (
+    UserPost,
+    UserProfile
+)
 
 
 def signup(request: HttpRequest) -> HttpResponse:
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect('social:home')
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -26,7 +30,7 @@ def signup(request: HttpRequest) -> HttpResponse:
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('home')
+            return redirect('social:home')
     else:
         form = SignUpForm()
 
@@ -38,3 +42,15 @@ def home(request: HttpRequest) -> HttpResponse:
         request,
         'home.html',
     )
+
+
+@login_required
+def profile(request: HttpRequest, username: str) -> HttpResponse:
+    user = UserProfile.objects.get(username=username)
+    if not user:
+        return redirect('social:home')
+
+    context = {
+        'user': user,
+    }
+    return render(request, 'profile.html', context)
