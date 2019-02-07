@@ -17,6 +17,7 @@ phonenumbers = "*"
 pillow = "*"
 social-auth-app-django = "*"
 psycopg2-binary = "*"
+mod-wsgi = "*"
 
 [requires]
 python_version = "3.6"
