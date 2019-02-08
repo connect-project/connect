@@ -1,5 +1,8 @@
 
+from datetime import date, timedelta
+
 from django.core import management
+
 from social.models import UserProfile, UserPost
 
 
@@ -15,6 +18,17 @@ class Command(management.base.BaseCommand):
                             type=int,
                             help='Number of extra users to be populated')
 
+    def _create_userposts(self, user_profile, count):
+        for i in range(count):
+            text = f"I'm repeated {count} / {i}," * (i + 1)
+            extra_fields = dict(
+                likes=i,
+                privacy=1 + i % 2,
+                date_posted=date.today()-timedelta(i),
+            )
+            UserPost.objects.create_userpost(user_profile, text,
+                                             **extra_fields)
+
     def _create_userprofiles(self, users_count):
         for user_number in range(1, users_count + 1):
             username = f'user_{user_number}'
@@ -27,8 +41,10 @@ class Command(management.base.BaseCommand):
                 phone_number=f'+91{user_number}'.ljust(13, '0'),
                 bio=f'This is a simple bio of {username}'
             )
-            UserProfile.objects.create_user(username, email=email,
-                                            password=password, **extra_fields)
+            user = UserProfile.objects.create_user(username, email=email,
+                                                   password=password, **extra_fields)
+            # Creating as many posts as user number
+            self._create_userposts(user, user_number)
 
     def _create_superuser(self):
         username = 'super_user'

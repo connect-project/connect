@@ -5,6 +5,7 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.text import Truncator
 
 from phonenumber_field.modelfields import PhoneNumberField
 
@@ -55,6 +56,16 @@ class Connection(models.Model):
         return f"{self.follower} : {self.following}"
 
 
+class UserPostManager(models.Manager):
+    def create_userpost(self, user_profile, text, **extra_fields):
+        if not text:
+            raise ValueError("User post can't be empty")
+        userpost = self.model(user_profile=user_profile,
+                              text=text, **extra_fields)
+        userpost.save()
+        return userpost
+
+
 class UserPost(models.Model):
     user_profile = models.ForeignKey(
         UserProfile,
@@ -79,11 +90,16 @@ class UserPost(models.Model):
         help_text="Your post here!"
     )
 
+    objects = UserPostManager()
+
     class Meta:
         ordering = ["date_updated"]
 
     def get_number_of_likes(self):
         return self.like_set.count()
+
+    def __str__(self):
+        return f"Posted on {self.date_posted} : {Truncator(self.text).chars(50)}"
 
 
 class Comment(models.Model):
