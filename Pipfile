@@ -9,7 +9,6 @@ pylint = "*"
 
 [packages]
 django = "*"
-django-crispy-forms = "*"
 django-imagekit = "*"
 django-phonenumber-field = "*"
 django-widget-tweaks = "*"

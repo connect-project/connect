@@ -1,5 +1,44 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-
+<div class="container">
+    <section class="row">
+        <div class="col-4 profile-box">
+            <div class="profile-photo">
+                <img src="https://picsum.photos/400" alt="Profile photo" class="img-thumbnail rounded-circle">
+            </div>
+        </div>
+        <section class="col">
+            <div>
+                <h1 class="d-inline username">username</h1>
+                <button type="button" class="btn btn-outline-primary">
+                    Follow
+                </button>
+            </div>
+            <ul class="list-inline">
+                <li class="list-inline-item posts-count">
+                    Posts <span class="posts-count-numbers">12</span>
+                </li>
+                <li class="list-inline-item followers-count">
+                    Followers
+                    <a href="#">
+                        <span class="followers-count-numbers">19</span>
+                    </a>
+                </li>
+                <li class="list-inline-item following-count">
+                    Following
+                    <a href="#">
+                        <span class="following-count-number">100</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="user-fullname">
+                <span class="first_name">User</span>
+                <span class="last_name">Name</span>
+            </div>
+            <p class="bio">Hi this is my wonderful bio.</p>
+            <a href="https://www.google.com" target="_blank">www.google.com</a>
+        </section>
+    </section>
+</div>
 {% endblock content %}

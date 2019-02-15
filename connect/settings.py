@@ -23,7 +23,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'crispy_forms',
     'mod_wsgi.server',
     'phonenumber_field',
     'social.apps.SocialConfig',
@@ -31,8 +30,6 @@ INSTALLED_APPS = [
 ]
 
 AUTH_USER_MODEL = 'social.UserProfile'
-
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
