@@ -7,8 +7,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PRODUCTION = os.environ.get('DEV_ENV') != 'True'
 
 # CHECKLIST: SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY',
-                            '&p0)&=7(hpy9_f3zu=^m!$6(@-esi2)ixycm6g-rciavx97$@9')
+SECRET_KEY = os.environ.get(
+    'DJANGO_SECRET_KEY',
+    '&p0)&=7(hpy9_f3zu=^m!$6(@-esi2)ixycm6g-rciavx97$@9')
 
 ALLOWED_HOSTS = ['*']
 

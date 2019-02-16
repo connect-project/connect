@@ -23,7 +23,7 @@ class Command(management.base.BaseCommand):
             extra_fields = dict(
                 likes=i,
                 privacy=1 + i % 2,
-                date_posted=date.today()-timedelta(i),
+                date_posted=date.today() - timedelta(i),
             )
             UserPost.objects.create_userpost(user_profile, text,
                                              **extra_fields)
