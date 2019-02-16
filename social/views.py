@@ -1,13 +1,15 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import (
     HttpRequest, HttpResponse
 )
 from django.shortcuts import redirect, render
+from django.views import generic
 
 from social.forms import SignUpForm
 from social.models import (
-    UserProfile
+    UserProfile, UserPost
 )
 
 
@@ -30,10 +32,18 @@ def signup(request: HttpRequest) -> HttpResponse:
 
 
 def home(request: HttpRequest) -> HttpResponse:
+    if request.user.is_authenticated:
+        return redirect('posts-list')
+
     return render(
         request,
         'home.html',
     )
+
+
+class UserPostListView(LoginRequiredMixin, generic.ListView):
+    model = UserPost
+    paginate_by = 10
 
 
 @login_required

@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Recent posts</h1>
+    {% if userpost_list %}
+    <ul>
+        {% for post in userpost_list %}
+        <li>
+            {{ post.text }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No post available.</p>
+    {% endif %}
+{% endblock %}

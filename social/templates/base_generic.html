@@ -20,21 +20,15 @@
     <nav class="navbar navbar-expand-lg navbar-light connect-bg-nav">
         <div class="container">
             <a class="navbar-brand" href="{% url 'social:home' %}">
-                {% load static %}
-                <img id="connect-logo" src="{% static 'assets/logo.png' %}" alt="Connect logo">
+                <h1>Connect</h1>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <div class="navbar-nav">
+                <div class="navbar-nav ml-auto">
                     <a class="nav-item nav-link active" href="{% url 'social:home' %}">Home</a>
-                    {% comment %}
-                    <a class="nav-item nav-link" href="{% url '' %}"></a>
-                    {% endcomment %}
-                </div>
-                <div class="navbar-nav justify-content-end flex-grow-1">
                     {% if user.is_authenticated %}
                     <a class="nav-item nav-link" href="{% url 'social:profile' user.get_username %}">
                         User: {{ user.get_username }}
@@ -53,7 +47,10 @@
         <div class="row">
             <div class="col-sm-10 ">
                 {% block content %}
-                {% endblock %}
+                {% endblock content%}
+                {% block pagination %}
+                {% include "pagination.html" %}
+                {% endblock pagination %}
             </div>
         </div>
     </div>
