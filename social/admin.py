@@ -8,8 +8,10 @@ from social.models import (
     UserPost,
 )
 
+
 class UserPostInline(admin.TabularInline):
     model = UserPost
+
 
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
@@ -19,9 +21,14 @@ class UserProfileAdmin(admin.ModelAdmin):
         })
     )
     inlines = [UserPostInline]
-    list_display = ('username', 'first_name', 'last_name', 'email', 'phone_number', 'website')
+    list_display = (
+        'username',
+        'first_name',
+        'last_name',
+        'email',
+        'phone_number',
+        'website')
     list_filter = ('is_active', 'is_staff')
-
 
 
 @admin.register(Comment)
