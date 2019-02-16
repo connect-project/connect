@@ -15,7 +15,7 @@
     {% endif %}
 {% endif %}
 
-{% include 'bs4_form.html' with form=form %}
+{% include 'bs4_form.html' with form=form submit_button_text="Login" %}
 
 {# Assumes you setup the password_reset view in your URLconf #}
 <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
