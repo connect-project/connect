@@ -1,4 +1,3 @@
-
 from datetime import date, timedelta
 
 from django.core import management
@@ -37,7 +36,7 @@ class Command(management.base.BaseCommand):
             extra_fields = dict(
                 first_name='UserFirst',
                 last_name=f'{username}second',
-                website=f'localhost/profile/{username}',
+                website=f'http://localhost:8000/profile/{username}',
                 phone_number=f'+91{user_number}'.ljust(13, '0'),
                 bio=f'This is a simple bio of {username}'
             )
@@ -53,7 +52,7 @@ class Command(management.base.BaseCommand):
         extra_fields = dict(
             first_name='Super',
             last_name='User',
-            website=f'localhost/profile/super_user',
+            website=f'http://localhost:8000/profile/super_user',
             phone_number='+91'.ljust(13, '9'),
             bio='This is a simple bio of Super user'
         )

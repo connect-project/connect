@@ -15,6 +15,7 @@ urlpatterns = [
     path('social/', RedirectView.as_view(url='')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('signup', views.signup, name='signup'),
+    path('posts', views.UserPostListView.as_view(), name='posts-list'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
