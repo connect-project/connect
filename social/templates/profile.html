@@ -10,7 +10,7 @@
         </div>
         <section class="col">
             <div>
-                <h1 class="d-inline username">username</h1>
+                <h1 class="d-inline username">{{ user.username}}</h1>
                 <button type="button" class="btn btn-outline-primary">
                     Follow
                 </button>
@@ -22,13 +22,13 @@
                 <li class="list-inline-item followers-count">
                     Followers
                     <a href="#">
-                        <span class="followers-count-numbers">19</span>
+                        <span class="followers-count-numbers">{{ user.followers_count }}</span>
                     </a>
                 </li>
                 <li class="list-inline-item following-count">
                     Following
                     <a href="#">
-                        <span class="following-count-number">100</span>
+                        <span class="following-count-number">{{ user.following_count }}</span>
                     </a>
                 </li>
             </ul>
@@ -36,8 +36,8 @@
                 <span class="first_name">User</span>
                 <span class="last_name">Name</span>
             </div>
-            <p class="bio">Hi this is my wonderful bio.</p>
-            <a href="https://www.google.com" target="_blank">www.google.com</a>
+            <p class="bio">{{ user.bio }}</p>
+            <a href="{{ user.website }}" target="_blank" >{{ user.website }}</a>
         </section>
     </section>
 </div>

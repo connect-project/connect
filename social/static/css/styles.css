@@ -5,14 +5,5 @@ html * {
 }
 
 .connect-bg-nav {
-    background-color: #e4d4fd;
-}
-
-nav.navbar {
-    height: 8vh;
-}
-
-nav.navbar #connect-logo {
-    height: 6vh;
-    width: 10vw;
+    background-color: #e8d3ff;
 }

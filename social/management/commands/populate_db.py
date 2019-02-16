@@ -30,6 +30,8 @@ class Command(management.base.BaseCommand):
 
     def _create_userprofiles(self, users_count):
         for user_number in range(1, users_count + 1):
+            all_users_old = [
+                past_user for past_user in UserProfile.objects.all().select_related()]
             username = f'user_{user_number}'
             email = f'user_{user_number}@connect.com'
             password = f'password{user_number}'
@@ -40,10 +42,13 @@ class Command(management.base.BaseCommand):
                 phone_number=f'+91{user_number}'.ljust(13, '0'),
                 bio=f'This is a simple bio of {username}'
             )
-            user = UserProfile.objects.create_user(username, email=email,
-                                                   password=password, **extra_fields)
+            user = UserProfile.objects.create_user(
+                username, email=email, password=password, **extra_fields)
             # Creating as many posts as user number
             self._create_userposts(user, user_number)
+
+            for past_user in all_users_old:
+                user.follow_user(past_user, True)
 
     def _create_superuser(self):
         username = 'super_user'
