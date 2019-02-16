@@ -6,9 +6,9 @@ class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=39, required=False,
                                  help_text="Optional. Enter First Name")
     last_name = forms.CharField(max_length=39, required=False,
-                                 help_text="Optional. Enter last Name")
+                                help_text="Optional. Enter last Name")
     email = forms.CharField(max_length=254,
-                                 help_text="Required. Enter your email")
+                            help_text="Required. Enter your email")
 
     class Meta:
         model = get_user_model()

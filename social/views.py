@@ -1,20 +1,12 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import (
-    HttpRequest,
-    HttpResponse,
-    HttpResponseRedirect
+    HttpRequest, HttpResponse
 )
-from django.shortcuts import get_object_or_404, render, redirect
-from django.urls import reverse
-from django.views import generic
-from django.views.generic.edit import CreateView
+from django.shortcuts import redirect, render
 
 from social.forms import SignUpForm
 from social.models import (
-    UserPost,
     UserProfile
 )
 
