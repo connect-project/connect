@@ -11,8 +11,9 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class UserProfile(AbstractUser):
+    USERPROFILE_BIO_MAX_LENGTH = 400
     bio = models.TextField(
-        max_length=400,
+        max_length=USERPROFILE_BIO_MAX_LENGTH,
         help_text="You bio here!"
     )
     phone_number = PhoneNumberField()
@@ -34,6 +35,32 @@ class UserProfile(AbstractUser):
 
     def get_full_name(self):
         return f"{self.first_name} {self.last_name}"
+
+    @property
+    def followers_count(self):
+        return Connection.objects.filter(following=self).count()
+
+    @property
+    def following_count(self):
+        return Connection.objects.filter(follower=self).count()
+
+    def follow_user(self, userprofile, follow: bool):
+        if follow:
+            Connection.objects.get_or_create(
+                follower=self, following=userprofile)
+        else:
+            Connection.objects.filter(
+                follower=self, following=userprofile).delete()
+
+
+def get_active_user(username: str):
+    try:
+        user = UserProfile.objects.get(username=username)
+    except UserProfile.DoesNotExist:
+        return None
+    if not user.is_active:
+        return None
+    return user
 
 
 class Connection(models.Model):
@@ -85,8 +112,10 @@ class UserPost(models.Model):
         default=PUBLIC,
         choices=PRIVACY_CHOICES
     )
+
+    USERPOST_TEXT_MAX_LENGTH = 1000
     text = models.TextField(
-        max_length=1000,
+        max_length=USERPOST_TEXT_MAX_LENGTH,
         help_text="Your post here!"
     )
 

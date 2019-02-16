@@ -9,7 +9,7 @@ from django.views import generic
 
 from social.forms import SignUpForm
 from social.models import (
-    UserProfile, UserPost
+    UserPost, get_active_user,
 )
 
 
@@ -47,8 +47,12 @@ class UserPostListView(LoginRequiredMixin, generic.ListView):
 
 
 @login_required
+def profile_settings():
+    pass
+
+
 def profile(request: HttpRequest, username: str) -> HttpResponse:
-    user = UserProfile.objects.get(username=username)
+    user = get_active_user(username)
     if not user:
         return redirect('social:home')
 
