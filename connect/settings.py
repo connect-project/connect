@@ -1,5 +1,4 @@
 import os
-import sys
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -119,6 +118,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 LOGIN_REDIRECT_URL = '/'
 
-# For local developement configurations
 if not PRODUCTION:
+    # pylint: disable=wildcard-import, unused-wildcard-import
     from connect.settings_dev import *
