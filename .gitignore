@@ -107,3 +107,4 @@ venv.bak/
 .vs
 .DS_Store
 /static
+/media
