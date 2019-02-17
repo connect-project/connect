@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Third party
+    'django_extensions',
     'mod_wsgi.server',
     'phonenumber_field',
     'rest_framework',
