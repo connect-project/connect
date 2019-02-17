@@ -23,10 +23,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Third party
     'mod_wsgi.server',
     'phonenumber_field',
-    'social.apps.SocialConfig',
+    'rest_framework',
     'widget_tweaks',
+
+    # Local apps
+    'social.apps.SocialConfig',
 ]
 
 AUTH_USER_MODEL = 'social.UserProfile'
@@ -119,7 +123,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT  = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = '/'
 
