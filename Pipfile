@@ -19,6 +19,7 @@ pillow = "*"
 social-auth-app-django = "*"
 psycopg2-binary = "*"
 mod-wsgi = "*"
+djangorestframework = "*"
 
 [requires]
 python_version = "3.6"

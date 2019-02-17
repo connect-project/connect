@@ -6,11 +6,13 @@ from django.http import (
 )
 from django.shortcuts import redirect, render
 from django.views import generic
+from rest_framework import generics
 
 from social.forms import SignUpForm
 from social.models import (
-    UserPost, get_active_user,
+    UserProfile, UserPost, get_active_user,
 )
+from social.serializer import UserProfileSerializer
 
 
 def signup(request: HttpRequest) -> HttpResponse:
@@ -60,3 +62,8 @@ def profile(request: HttpRequest, username: str) -> HttpResponse:
         'user': user,
     }
     return render(request, 'profile.html', context)
+
+
+class ListUserProfilesView(generics.ListAPIView):
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
