@@ -13,6 +13,7 @@ class SignUpForm(UserCreationForm):
     email = forms.CharField(max_length=254,
                             help_text="Required. Enter your email")
     website = forms.URLField(initial='http://', label="Website")
+    photo = forms.ImageField(label="Upload your profile photo")
 
     bio = forms.CharField(
         max_length=UserProfile.USERPROFILE_BIO_MAX_LENGTH,

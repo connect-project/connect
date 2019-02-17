@@ -7,3 +7,7 @@ html * {
 .connect-bg-nav {
     background-color: #e8d3ff;
 }
+
+p.bio {
+    font-size: 0.9em;
+}

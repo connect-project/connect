@@ -18,4 +18,4 @@ urlpatterns = [
     path('posts', views.UserPostListView.as_view(), name='posts-list'),
 ]
 
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
