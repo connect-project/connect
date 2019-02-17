@@ -16,6 +16,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('signup', views.signup, name='signup'),
     path('posts', views.UserPostListView.as_view(), name='posts-list'),
+    path('api/social/', include('social.api.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

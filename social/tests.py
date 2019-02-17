@@ -4,7 +4,7 @@ from rest_framework.test import APIClient, APITestCase
 from rest_framework.views import status
 
 from social.models import UserProfile
-from social.serializer import UserProfileSerializer
+from social.api.serializer import UserProfileSerializer
 
 
 class BaseViewTest(APITestCase):
@@ -17,7 +17,7 @@ class BaseViewTest(APITestCase):
 class GetAllUserProfilesTest(BaseViewTest):
     def test_get_all_users(self):
         response = self.client.get(
-            reverse("social:users-all")
+            reverse("social-api:users-all")
         )
         expected = UserProfile.objects.all()
         serialized = UserProfileSerializer(expected, many=True)
